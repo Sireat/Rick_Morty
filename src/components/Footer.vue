@@ -16,7 +16,7 @@
           >Figma</a
         >
         <a
-          href="https://github.com/Sireat/Hahu_project/commit/bcc40e36d4f4d84f0eb5e04e70e6869d4ddff1b6"
+          href="https://github.com/Sireat/Rick_Morty.git"
           target="_blank"
           class="hover:text-gray-300 font-bold"
           >Rick and Morty Source Code</a
