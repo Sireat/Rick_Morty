@@ -1,7 +1,7 @@
 <template>
   <div class="bg-slate-300 container mx-auto relative">
     <Carousel
-      :items-to-show="4"
+      :items-to-show="itemsToShow"
       :wrap-around="true"
       :snap-align="'start'"
       class="carousel py-4"
@@ -72,9 +72,8 @@
     </button>
   </div>
 </template>
-
 <script setup>
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 import { Carousel, Slide } from "vue3-carousel";
 import "vue3-carousel/dist/carousel.css";
 
@@ -99,7 +98,6 @@ const shows = [
     stars: "Actor D, Actor E, Actor F",
     rating: "7.8/10",
   },
-  // Add more shows as needed
   {
     image: "/assets/images/3.jpeg",
     title: "Show Title 3",
@@ -165,6 +163,26 @@ const shows = [
   },
 ];
 
+const itemsToShow = ref(4);
+
+const updateItemsToShow = () => {
+  const width = window.innerWidth;
+  if (width >= 1024) {
+    itemsToShow.value = 4;
+  } else if (width >= 768) {
+    itemsToShow.value = 3;
+  } else if (width >= 640) {
+    itemsToShow.value = 2;
+  } else {
+    itemsToShow.value = 1;
+  }
+};
+
+onMounted(() => {
+  updateItemsToShow();
+  window.addEventListener("resize", updateItemsToShow);
+});
+
 const next = () => {
   carousel.value.next();
 };
@@ -173,7 +191,6 @@ const prev = () => {
   carousel.value.prev();
 };
 </script>
-
 <style scoped>
 .carousel-container {
   width: 100%;
